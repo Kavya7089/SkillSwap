@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Save, X, Plus, Camera, MapPin, Star, Calendar } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { User } from '../types';
@@ -11,6 +11,8 @@ const ProfilePage: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [newSkillOffered, setNewSkillOffered] = useState('');
   const [newSkillWanted, setNewSkillWanted] = useState('');
+  const [avatarUploading, setAvatarUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (user) {
@@ -113,6 +115,29 @@ const ProfilePage: React.FC = () => {
     ));
   };
 
+  // Avatar upload logic
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && editedUser) {
+      setAvatarUploading(true);
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        if (reader.result) {
+          // Update avatar preview
+          setEditedUser({ ...editedUser, avatar: reader.result as string });
+          // Simulate upload (replace with your API if needed)
+          try {
+            await mockApi.updateUser({ ...editedUser, avatar: reader.result as string });
+          } catch (err) {
+            // Optionally handle error
+          }
+        }
+        setAvatarUploading(false);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   if (!user || !editedUser) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
@@ -143,9 +168,27 @@ const ProfilePage: React.FC = () => {
                   className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
                 />
                 {isEditing && (
-                  <button className="absolute bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition-colors">
-                    <Camera className="h-4 w-4" />
-                  </button>
+                  <>
+                    <button
+                      className="absolute bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition-colors"
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={avatarUploading}
+                      aria-label="Edit avatar"
+                    >
+                      <Camera className="h-4 w-4" />
+                    </button>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={handleAvatarChange}
+                    />
+                    {avatarUploading && (
+                      <span className="absolute bottom-2 left-2 text-xs bg-white px-2 py-1 rounded shadow text-blue-500">Uploading...</span>
+                    )}
+                  </>
                 )}
               </div>
 
