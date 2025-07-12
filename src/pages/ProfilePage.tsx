@@ -291,7 +291,7 @@ const ProfilePage: React.FC = () => {
                     ) : (
                       <button
                         onClick={() => setIsEditing(true)}
-                        className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all"
+                        className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all"
                       >
                         Edit Profile
                       </button>
@@ -421,7 +421,7 @@ const ProfilePage: React.FC = () => {
                 disabled={!isEditing}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   editedUser.availability.includes(option)
-                    ? 'bg-purple-500 text-white'
+                    ? 'bg-emerald-500 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 } ${isEditing ? 'cursor-pointer' : 'cursor-default'}`}
               >
@@ -445,9 +445,9 @@ const ProfilePage: React.FC = () => {
                 checked={editedUser.isPublic}
                 onChange={(e) => setEditedUser({ ...editedUser, isPublic: e.target.checked })}
                 disabled={!isEditing}
-                className="sr-only peer"
+                className="sr-only peer bg-gradient-to-r from-emerald-500 to-teal-600"
               />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
             </label>
           </div>
         </div>

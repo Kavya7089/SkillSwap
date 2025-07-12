@@ -93,7 +93,7 @@ const SkillRequestModal: React.FC<SkillRequestModalProps> = ({
                     value={offeredSkill}
                     onChange={(e) => setOfferedSkill(e.target.value)}
                     required
-                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
                   >
                     <option value="">Select a skill to offer</option>
                     {user?.skillsOffered.map((skill) => (
@@ -112,7 +112,7 @@ const SkillRequestModal: React.FC<SkillRequestModalProps> = ({
                     value={wantedSkill}
                     onChange={(e) => setWantedSkill(e.target.value)}
                     required
-                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
                   >
                     <option value="">Select a skill to learn</option>
                     {targetUser.skillsOffered.map((skill) => (
@@ -131,7 +131,7 @@ const SkillRequestModal: React.FC<SkillRequestModalProps> = ({
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={3}
-                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
                     placeholder="Tell them why you'd like to swap skills..."
                   />
                 </div>
@@ -147,7 +147,7 @@ const SkillRequestModal: React.FC<SkillRequestModalProps> = ({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center justify-center space-x-2"
+                    className="flex-1 bg-gradient-to-r from-emerald-500 to-purple-600 text-white py-2 px-4 rounded-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center justify-center space-x-2"
                   >
                     {isSubmitting ? (
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

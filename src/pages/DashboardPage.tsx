@@ -68,7 +68,7 @@ const DashboardPage: React.FC = () => {
       case 'rejected':
         return <XCircle className="h-5 w-5 text-red-500" />;
       case 'completed':
-        return <CheckCircle className="h-5 w-5 text-blue-500" />;
+        return <CheckCircle className="h-5 w-5 text-emerald-500" />;
       default:
         return null;
     }
@@ -83,7 +83,7 @@ const DashboardPage: React.FC = () => {
       case 'rejected':
         return 'bg-red-100 text-red-800';
       case 'completed':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-emerald-100 text-emerald-800';
       default:
         return 'bg-gray-100 text-gray-800';
     }
@@ -91,23 +91,23 @@ const DashboardPage: React.FC = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
-        <p className="text-gray-600">Please log in to view your requests.</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
+        <p className="text-gray-300 opacity-80">Please log in to view your requests.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 opacity-80">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Skill Swap Requests</h1>
-          <p className="text-gray-600">Manage your incoming and outgoing skill swap requests</p>
+          <h1 className="text-3xl font-bold text-gray-100 mb-2">Skill Swap Requests</h1>
+          <p className="text-gray-300">Manage your incoming and outgoing skill swap requests</p>
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+        <div className="bg-gray-900 rounded-xl shadow-lg p-6 mb-6 opacity-90">
           <div className="flex flex-wrap gap-2">
             {[
               { key: 'all', label: 'All Requests', count: requests.length },
@@ -121,7 +121,7 @@ const DashboardPage: React.FC = () => {
                 onClick={() => setFilter(filterOption.key as any)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${
                   filter === filterOption.key
-                    ? 'bg-blue-500 text-white shadow-lg'
+                    ? 'bg-emerald-500 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -134,15 +134,15 @@ const DashboardPage: React.FC = () => {
         {/* Requests List */}
         <div className="space-y-4">
           {isLoading ? (
-            <div className="bg-white rounded-xl p-8 text-center">
-              <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading requests...</p>
+            <div className="bg-gray-900 rounded-xl p-8 text-center opacity-90">
+              <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-gray-300">Loading requests...</p>
             </div>
           ) : filteredRequests.length === 0 ? (
-            <div className="bg-white rounded-xl p-8 text-center">
+            <div className="bg-gray-900 rounded-xl p-8 text-center opacity-90">
               <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No requests found</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg font-medium text-gray-100 mb-2">No requests found</h3>
+              <p className="text-gray-300">
                 {filter === 'all' 
                   ? "You don't have any skill swap requests yet."
                   : `You don't have any ${filter} requests.`}
@@ -156,7 +156,7 @@ const DashboardPage: React.FC = () => {
               return (
                 <div
                   key={request.id}
-                  className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+                  className="bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow opacity-90"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-start space-x-4 flex-1">
@@ -165,10 +165,10 @@ const DashboardPage: React.FC = () => {
                         <img
                           src={otherUser?.avatar || '/placeholder-avatar.png'}
                           alt={otherUser?.name || 'Unknown User'}
-                          className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-lg"
+                          className="w-12 h-12 rounded-full object-cover border-2 border-gray-800 shadow-lg"
                         />
                         <div className={`absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center ${
-                          isIncoming ? 'bg-blue-500' : 'bg-green-500'
+                          isIncoming ? 'bg-emerald-500' : 'bg-green-500'
                         }`}>
                           <User className="h-3 w-3 text-white" />
                         </div>
@@ -177,7 +177,7 @@ const DashboardPage: React.FC = () => {
                       {/* Request Details */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">
+                          <h3 className="text-lg font-semibold text-gray-100">
                             {isIncoming ? 'Request from' : 'Request to'} {otherUser?.name || 'Unknown User'}
                           </h3>
                           <div className="flex items-center space-x-2">
@@ -190,26 +190,26 @@ const DashboardPage: React.FC = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                           <div>
-                            <span className="text-sm text-gray-500">Offering:</span>
-                            <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium inline-block">
+                            <span className="text-sm text-gray-400">Offering:</span>
+                            <div className="bg-green-900 text-green-200 px-3 py-1 rounded-full text-sm font-medium inline-block">
                               {request.offeredSkill}
                             </div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500">Wants to learn:</span>
-                            <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium inline-block">
+                            <span className="text-sm text-gray-400">Wants to learn:</span>
+                            <div className="bg-emerald-900 text-emerald-200 px-3 py-1 rounded-full text-sm font-medium inline-block">
                               {request.wantedSkill}
                             </div>
                           </div>
                         </div>
 
                         {request.message && (
-                          <div className="bg-gray-50 rounded-lg p-3 mb-3">
-                            <p className="text-gray-700 text-sm">{request.message}</p>
+                          <div className="bg-gray-800 rounded-lg p-3 mb-3">
+                            <p className="text-gray-200 text-sm">{request.message}</p>
                           </div>
                         )}
 
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-gray-400">
                           {isIncoming ? 'Received' : 'Sent'} on {new Date(request.createdAt).toLocaleDateString()}
                         </div>
                       </div>
@@ -220,14 +220,14 @@ const DashboardPage: React.FC = () => {
                       <div className="flex space-x-2 ml-4">
                         <button
                           onClick={() => handleUpdateStatus(request.id, 'accepted')}
-                          className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors flex items-center space-x-2"
+                          className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colors flex items-center space-x-2"
                         >
                           <CheckCircle className="h-4 w-4" />
                           <span>Accept</span>
                         </button>
                         <button
                           onClick={() => handleUpdateStatus(request.id, 'rejected')}
-                          className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center space-x-2"
+                          className="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors flex items-center space-x-2"
                         >
                           <XCircle className="h-4 w-4" />
                           <span>Reject</span>
@@ -238,7 +238,7 @@ const DashboardPage: React.FC = () => {
                     {request.status === 'accepted' && (
                       <button
                         onClick={() => handleUpdateStatus(request.id, 'completed')}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors ml-4"
+                        className="px-4 py-2 bg-emerald-700 text-white rounded-lg hover:bg-emerald-800 transition-colors ml-4"
                       >
                         Mark Complete
                       </button>

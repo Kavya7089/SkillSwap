@@ -6,6 +6,7 @@ import { User } from '../types';
 import { mockApi } from '../services/mockApi';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import hs from '../assets/hs.png'; // Placeholder for hero image
 
 const HomePage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -75,25 +76,34 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div
+        className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-16 relative opacity-90"
+        style={{
+          backgroundImage: `url(${hs})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center opacity-80">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Discover Amazing
             <span className="block bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
               Skill Swappers
             </span>
           </h1>
-          <p className="text-xl text-emerald-100 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto opacity-80">
             Connect with talented individuals and exchange skills to grow together
           </p>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="bg-white rounded-xl shadow-lg p-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10 opacity-80">
+        <div className="bg-gray-900 rounded-xl shadow-lg p-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -147,7 +157,7 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* User Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 opacity-80">
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, index) => (
