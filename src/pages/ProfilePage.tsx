@@ -180,7 +180,7 @@ const ProfilePage: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-32 relative">
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white h-32 relative">
             <div className="absolute inset-0 bg-black bg-opacity-20"></div>
           </div>
 
@@ -196,7 +196,7 @@ const ProfilePage: React.FC = () => {
                 {isEditing && (
                   <>
                     <button
-                      className="absolute bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition-colors"
+                      className="absolute bottom-2 right-2 bg-emerald-500 text-white p-2 rounded-full hover:bg-emerald-600 transition-colors"
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
                       disabled={avatarUploading}
@@ -227,7 +227,7 @@ const ProfilePage: React.FC = () => {
                         type="text"
                         value={editedUser.name}
                         onChange={(e) => setEditedUser({ ...editedUser, name: e.target.value })}
-                        className="text-2xl font-bold text-gray-900 border-b-2 border-blue-500 bg-transparent focus:outline-none"
+                        className="text-2xl font-bold text-gray-900 border-b-2 border-emerald-500 bg-transparent focus:outline-none"
                       />
                     ) : (
                       <h1 className="text-2xl font-bold text-gray-900">{editedUser.name}</h1>
@@ -242,7 +242,7 @@ const ProfilePage: React.FC = () => {
                             value={editedUser.location || ''}
                             onChange={(e) => setEditedUser({ ...editedUser, location: e.target.value })}
                             placeholder="Add location"
-                            className="border-b border-gray-300 bg-transparent focus:outline-none focus:border-blue-500"
+                            className="border-b border-gray-300 bg-transparent focus:outline-none focus:border-emerald-500"
                           />
                         ) : (
                           <span>{editedUser.location || 'No location set'}</span>
@@ -276,7 +276,7 @@ const ProfilePage: React.FC = () => {
                         <button
                           onClick={handleSave}
                           disabled={isSaving}
-                          className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all flex items-center space-x-2"
+                          className="px-4 py-2 bg-gradient-to-r  from-emerald-500 to-teal-600 text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all flex items-center space-x-2"
                         >
                           {isSaving ? (
                             <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
