@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import posthog from 'posthog-js'; // Add this import
 import { Users, MessageSquare, Star, TrendingUp, Ban, Eye, AlertTriangle } from 'lucide-react';
 import { AdminStats, User, SkillSwapRequest } from '../types';
 import { mockApi } from '../services/mockApi';
 import { useAuth } from '../context/AuthContext';
+
+// Access PostHog API key from .env
+const POSTHOG_KEY = import.meta.env.VITE_POSTHOG_KEY;
+
+posthog.init(POSTHOG_KEY, {
+  api_host: 'https://app.posthog.com',
+});
 
 const AdminPage: React.FC = () => {
   const [stats, setStats] = useState<AdminStats | null>(null);
@@ -14,6 +22,7 @@ const AdminPage: React.FC = () => {
 
   useEffect(() => {
     if (user?.email === 'admin@skillswap.com') {
+      posthog.capture('admin_dashboard_viewed', { email: user.email });
       loadAdminData();
     }
   }, [user]);

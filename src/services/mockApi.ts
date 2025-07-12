@@ -4,8 +4,8 @@ import { User, SkillSwapRequest, Feedback, AdminStats, SignupData } from '../typ
 const mockUsers: User[] = [
   {
     id: '1',
-    name: 'Sarah Chen',
-    email: 'sarah@example.com',
+    name: 'Mahi Shriwastava',
+    email: 'mahi@example.com',
     location: 'San Francisco, CA',
     avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400',
     skillsOffered: ['React', 'JavaScript', 'UI/UX Design'],
@@ -22,8 +22,8 @@ const mockUsers: User[] = [
   },
   {
     id: '2',
-    name: 'Marcus Johnson',
-    email: 'marcus@example.com',
+    name: 'Aryan Tiwari',
+    email: 'aryan@example.com',
     location: 'New York, NY',
     avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
     skillsOffered: ['Python', 'Data Analysis', 'Machine Learning'],
@@ -40,8 +40,8 @@ const mockUsers: User[] = [
   },
   {
     id: '3',
-    name: 'Elena Rodriguez',
-    email: 'elena@example.com',
+    name: 'prakash yadav',
+    email: 'prakash@example.com',
     location: 'Barcelona, Spain',
     avatar: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=400',
     skillsOffered: ['Photoshop', 'Illustrator', 'Brand Design'],
@@ -58,8 +58,8 @@ const mockUsers: User[] = [
   },
   {
     id: '4',
-    name: 'David Kim',
-    email: 'david@example.com',
+    name: 'Ajay Rawat ',
+    email: 'ajay@example.com',
     location: 'Seoul, South Korea',
     avatar: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400',
     skillsOffered: ['Excel', 'Financial Modeling', 'Data Visualization'],

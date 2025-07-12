@@ -3,6 +3,11 @@ import { Save, X, Plus, Camera, MapPin, Star, Calendar } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { User } from '../types';
 import { mockApi } from '../services/mockApi';
+import { pusher, subscribeToNotifications } from '../services/realtime';
+
+// Access Cloudinary API key and URL from .env
+const CLOUDINARY_API_KEY = import.meta.env.VITE_CLOUDINARY_API_KEY;
+const CLOUDINARY_URL = import.meta.env.CLOUDINARY_URL;
 
 const ProfilePage: React.FC = () => {
   const { user, login } = useAuth();
@@ -19,6 +24,20 @@ const ProfilePage: React.FC = () => {
       setEditedUser({ ...user });
     }
   }, [user]);
+
+  useEffect(() => {
+    const handleNewNotification = (data: any) => {
+      // Handle the notification (e.g., show a toast, update the UI, etc.)
+      console.log('New notification:', data);
+    };
+
+    subscribeToNotifications(handleNewNotification);
+
+    return () => {
+      // Unsubscribe from notifications on unmount
+      pusher.unsubscribe('notifications');
+    };
+  }, []);
 
   const handleSave = async () => {
     if (!editedUser) return;
@@ -115,26 +134,33 @@ const ProfilePage: React.FC = () => {
     ));
   };
 
-  // Avatar upload logic
+  // Avatar upload logic with Cloudinary
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && editedUser) {
       setAvatarUploading(true);
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        if (reader.result) {
-          // Update avatar preview
-          setEditedUser({ ...editedUser, avatar: reader.result as string });
-          // Simulate upload (replace with your API if needed)
-          try {
-            await mockApi.updateUser({ ...editedUser, avatar: reader.result as string });
-          } catch (err) {
-            // Optionally handle error
-          }
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('api_key', CLOUDINARY_API_KEY);
+      formData.append('upload_preset', 'your_upload_preset'); 
+
+      try {
+        const cloudinaryApiUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_URL.split('@')[1]}/image/upload`;
+        const response = await fetch(cloudinaryApiUrl, {
+          method: 'POST',
+          body: formData,
+        });
+        const data = await response.json();
+        if (data.secure_url) {
+          setEditedUser({ ...editedUser, avatar: data.secure_url });
+          await mockApi.updateUser({ ...editedUser, avatar: data.secure_url });
         }
+      } catch (err) {
+        // Handle error
+      } finally {
         setAvatarUploading(false);
-      };
-      reader.readAsDataURL(file);
+      }
     }
   };
 
