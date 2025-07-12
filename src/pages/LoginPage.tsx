@@ -37,7 +37,7 @@ const LoginPage: React.FC = () => {
   const demoAccounts = [
     { email: 'sarah@example.com', name: 'Sarah Chen (Frontend Developer)' },
     { email: 'marcus@example.com', name: 'Marcus Johnson (Data Scientist)' },
-    { email: 'kavyarajoria9691@gmail.com', name: 'Admin Account' }
+    { email: 'admin@skillswap.com', name: 'Admin Account' }
   ];
 
   return (
