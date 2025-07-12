@@ -2,6 +2,13 @@
 TEAM NAME - unity coder(Team 1259)
 🚀 A creative, animated skill-exchange platform where users offer and request skills through public profiles. 🎨 Features include avatar creation, 3D UI, real-time swap requests, and community-driven ratings.
 
+# team name - unity coders
+* team members 
+1. Kavya Rajoria
+2. Aryan Tiwari 
+3. mahi Shrivastava
+4. Ajay Kumar Rawat
+
 
 # PROBLEM STATEMENT
 * Skill Swap Platform *
